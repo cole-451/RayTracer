@@ -10,7 +10,7 @@ void Camera::SetView(const glm::vec3& eye, const glm::vec3& target, const glm::v
 	//this->right = normalized vector from the cross product of the forward and up vector
 	this->right = glm::normalize(glm::cross(forward, up));
 	//this->up = normalized vector from the cross product of the right and forward vector
-	this->up = glm::normalize(glm::cross(right, forward));
+	this->up = glm::normalize(glm::cross(this->right, this->forward));
 	CalculateViewPlane();
 }
 
@@ -31,14 +31,14 @@ void Camera::CalculateViewPlane() {
 	float theta = glm::radians(fov);
 
 	//float halfHeight = trig function that is opposite over adjacent, use half theta as parameter
-	float halfHeight = tan(theta * 0.5);
+	float halfHeight = tan(theta * 0.5f);
 	//float halfWidth = scale halfHeight by aspect ratio
 	float halfWidth = halfHeight * aspectRatio;
 
 	//horizontal = right vector * width (how do you get full width from half width?)
-	horizontal = right * (halfWidth * 2);
+	horizontal = right * (halfWidth * 2.0f);
 	//vertical = up vector * height (how do you get full height from half height?)
-	vertical = up * (halfHeight * 2);
+	vertical = up * (halfHeight * 2.0f);
 
 	//lowerLeft = eye - (half horizontal) - (half vertical) + forward;
 	lowerLeft = eye - (horizontal * 0.5f) - (vertical * 0.5f) + forward;
