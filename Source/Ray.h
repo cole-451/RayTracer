@@ -16,7 +16,7 @@ struct Ray {
 	}
 
 	// returns a point along the ray.
-	glm::vec3 at(const float t) {
+	glm::vec3 at (const float t) const{
 		return origin + t * direction;
 	}
 

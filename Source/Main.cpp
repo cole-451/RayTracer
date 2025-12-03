@@ -5,6 +5,8 @@
 #include <glm/glm.hpp>
 #include "Camera.h"
 #include "Scene.h"
+#include "Object.h"
+#include "Sphere.h"
 
 int main() {
 	constexpr int SCREEN_WIDTH = 800;
@@ -24,6 +26,9 @@ int main() {
 
 		Scene scene; // after camera creation/initialization
 		//scene.SetSky({0,1,0}, {1,0,0});
+
+		auto sphere = std::make_unique<Sphere>(glm::vec3{ 0, 0, 0 }, 2.0f, color3_t{ 0, 1, 0 });
+		scene.AddObject(std::move(sphere));
 
 		
 
@@ -48,7 +53,7 @@ int main() {
 
 		// remove previous "static" code and replace with this
 		scene.Render(framebuffer, camera);
-		scene.SetSky({ 1,1,0 }, { 1,0,0 });
+		//scene.SetSky({ 1,1,0 }, { 1,0,0 });
 
 		// update frame buffer, copy buffer pixels to texture
 		framebuffer.Update();

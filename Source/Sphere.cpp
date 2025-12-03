@@ -1,6 +1,6 @@
 #include "Sphere.h"
 
-bool Sphere::Hit( Ray& ray, float minDistance, float maxDistance, raycastHit_t& raycastHit) {
+bool Sphere::Hit( const Ray& ray, float minDistance, float maxDistance, raycastHit_t& raycastHit) {
     // compute direction vector (ray origin - sphere center)
     glm::vec3 oc = ray.origin - position;
 
