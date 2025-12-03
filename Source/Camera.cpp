@@ -4,7 +4,7 @@ void Camera::SetView(const glm::vec3& eye, const glm::vec3& target, const glm::v
 	this->eye = eye;
 
 	// create camera axis
-	this->forward = glm::normalize(target) - glm::normalize(eye);
+	this->forward = glm::normalize(target - eye);
 	//this->forward = normalized direction vector (target <-- eye)
 	
 	//this->right = normalized vector from the cross product of the forward and up vector
@@ -41,6 +41,6 @@ void Camera::CalculateViewPlane() {
 	vertical = up * (halfHeight * 2);
 
 	//lowerLeft = eye - (half horizontal) - (half vertical) + forward;
-	lowerLeft = eye - (horizontal * glm::vec3{0.5, 0.5, 0.5}) - (vertical * glm::vec3{ 0.5, 0.5, 0.5 }) + forward;
+	lowerLeft = eye - (horizontal * 0.5f) - (vertical * 0.5f) + forward;
 }
 

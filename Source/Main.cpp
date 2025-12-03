@@ -4,6 +4,7 @@
 #include <SDL3/SDL.h>
 #include <glm/glm.hpp>
 #include "Camera.h"
+#include "Scene.h"
 
 int main() {
 	constexpr int SCREEN_WIDTH = 800;
@@ -17,9 +18,14 @@ int main() {
 	Framebuffer framebuffer(renderer, SCREEN_WIDTH, SCREEN_HEIGHT);
 
 
-	float aspectRatio = framebuffer.width / framebuffer.height * 1.0f; //framebuffer width divided by framebuffer height (float division)
-		Camera camera(70.0f, aspectRatio);
+	float aspectRatio = framebuffer.width / (float)framebuffer.height;
+	Camera camera(70.0f, aspectRatio);
 		camera.SetView({ 0, 0, 5 }, { 0, 0, 0 });
+
+		Scene scene; // after camera creation/initialization
+		//scene.SetSky({0,1,0}, {1,0,0});
+
+		
 
 	SDL_Event event;
 	bool quit = false;
@@ -38,7 +44,11 @@ int main() {
 
 		// draw to frame buffer
 		framebuffer.Clear({ 0, 0, 0, 255 });
-		for (int i = 0; i < 300; i++) framebuffer.DrawPoint(rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT, { 255, 255, 255, 255 });
+		//for (int i = 0; i < 300; i++) framebuffer.DrawPoint(rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT, { 255, 255, 255, 255 });
+
+		// remove previous "static" code and replace with this
+		scene.Render(framebuffer, camera);
+		scene.SetSky({ 1,1,0 }, { 1,0,0 });
 
 		// update frame buffer, copy buffer pixels to texture
 		framebuffer.Update();
