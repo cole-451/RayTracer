@@ -5,7 +5,7 @@ class Sphere : public Object
 public:
 	Sphere() = default;
 	Sphere(const glm::vec3& position, float radius, const color3_t& color) :
-		Object(color),
+		Object{ color },
 		position{position},
 		radius{radius}
 	{ }

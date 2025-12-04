@@ -29,6 +29,8 @@ void Scene::Render(Framebuffer& framebuffer, const Camera& camera) {
 
 void Scene::AddObject(std::unique_ptr<Object> object) {
 	// add object to objects vector
+	//because it is a unique pointer, you need to transfer ownership, or else it will throw an exception.
+	objects.push_back(std::move(object));
 }
 
 color3_t Scene::Trace(const Ray& ray, float minDistance, float maxDistance, raycastHit_t& raycastHit) {
