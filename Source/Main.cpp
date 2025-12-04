@@ -54,7 +54,7 @@ int main() {
 		//for (int i = 0; i < 300; i++) framebuffer.DrawPoint(rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT, { 255, 255, 255, 255 });
 
 		// remove previous "static" code and replace with this
-		scene.Render(framebuffer, camera);
+		scene.Render(framebuffer, camera, 50);
 		//scene.SetSky({ 1,1,0 }, { 1,0,0 });
 
 		// update frame buffer, copy buffer pixels to texture
