@@ -19,7 +19,7 @@ public:
 
 private:
 	// trace the ray into the scene
-	color3_t Trace(const struct Ray& ray, float minDistance, float maxDistance);
+	color3_t Trace(const struct Ray& ray, float minDistance, float maxDistance, int maxDepth = 5);
 
 private:
 	color3_t skyBottom{ 1 };

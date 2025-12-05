@@ -40,8 +40,12 @@ void Scene::AddObject(std::unique_ptr<Object> object) {
 	objects.push_back(std::move(object));
 }
 
-color3_t Scene::Trace(const Ray& ray, float minDistance, float maxDistance) {
+color3_t Scene::Trace(const Ray& ray, float minDistance, float maxDistance, int maxDepth) {
 
+	// reached max depth (bounce) return black color
+	if (maxDepth == 0) return { 0,0,0 };
+
+		
 	raycastHit_t raycastHit;
 	bool rayHit = false;
 	float closestDistance = maxDistance;
@@ -58,9 +62,16 @@ color3_t Scene::Trace(const Ray& ray, float minDistance, float maxDistance) {
 
 	// check if ray hit object
 	if (rayHit)	{
-		// get material color of hit object
-		color3_t color = raycastHit.color;
-		return color;
+		color3_t attenuation;
+		Ray scattered;
+		// get raycast hit matereial, get material color and scattered ray 
+		if (raycastHit.material->Scatter(ray, raycastHit, attenuation, scattered)) {
+			// trace scattered ray, final color will be the product of all the material colors
+			return attenuation * Trace(scattered, minDistance, maxDistance, maxDepth--);
+		}
+		else {
+			return raycastHit.material->GetEmissive();
+		}
 	}
 
 	// draw sky colors based on the ray y position

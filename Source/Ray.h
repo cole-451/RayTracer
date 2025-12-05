@@ -32,5 +32,6 @@ struct raycastHit_t {
 	glm::vec3 point{ 0 };
 	glm::vec3 normal{0};
 	float distance;
-	color3_t color;
+	class Material* material;
+	
 };

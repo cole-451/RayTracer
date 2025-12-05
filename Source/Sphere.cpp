@@ -28,8 +28,10 @@ bool Sphere::Hit( const Ray& ray, float minDistance, float maxDistance, raycastH
             raycastHit.distance = t; // t is the distance
             raycastHit.point =  ray.at(t); // use ray at(t)
             raycastHit.normal = (raycastHit.point - position) / radius;
+            raycastHit.material = material.get();
+            
 
-            raycastHit.color = color;
+            
 
             return true;
         }
@@ -40,7 +42,8 @@ bool Sphere::Hit( const Ray& ray, float minDistance, float maxDistance, raycastH
             raycastHit.distance = t; // t is the distance
             raycastHit.point = ray.at(t); // use ray at(t)
             raycastHit.normal = (raycastHit.point - position) / radius;
-            raycastHit.color = color;
+            raycastHit.material = material.get();
+
 
             return true;
         }
