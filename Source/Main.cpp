@@ -9,6 +9,7 @@
 #include "Sphere.h"
 #include "Random.h"
 #include "Material.h"
+#include "Plane.h"
 #include <algorithm>
 
 int main() {
@@ -25,7 +26,8 @@ int main() {
 
 	float aspectRatio = framebuffer.width / (float)framebuffer.height;
 	Camera camera(70.0f, aspectRatio);
-		camera.SetView({ 0, 0, 5 }, { 0, 0, 0 });
+		//camera.SetView({ 0, 0, 5 }, { 0, 0, 0 });
+		camera.SetView({ 0, 2, 5 }, { 0, 0, 0 });
 
 		Scene scene; // after camera creation/initialization
 		scene.SetSky({0,1,0}, {1,0,0});
@@ -48,6 +50,11 @@ int main() {
 			std::unique_ptr<Object> sphere = std::make_unique<Sphere>(Transform{ position }, random::getReal(0.2f, 1.0f), materials[random::getInt(4)]);
 			scene.AddObject(std::move(sphere));
 		}
+
+		//add plane
+		auto gray = std::make_shared<Lambertian>(color3_t{ 0.2f, 0.2f, 0.2f });
+		std::unique_ptr<Plane> plane = std::make_unique<Plane>(Transform{ glm::vec3{ 0.0f, 0.0f, 0.0f } }, gray);
+		scene.AddObject(std::move(plane));
 
 		
 
