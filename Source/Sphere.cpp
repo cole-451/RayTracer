@@ -2,7 +2,7 @@
 
 bool Sphere::Hit( const Ray& ray, float minDistance, float maxDistance, raycastHit_t& raycastHit) {
     // compute direction vector (ray origin - sphere center)
-    glm::vec3 oc = ray.origin - position;
+    glm::vec3 oc = ray.origin - transform.position;
 
     // quadratic coefficients for ray–sphere intersection
     // a coefficient is a number that multiplies a variable in a mathematical expression
@@ -27,7 +27,7 @@ bool Sphere::Hit( const Ray& ray, float minDistance, float maxDistance, raycastH
         if (t > minDistance && t < maxDistance) {
             raycastHit.distance = t; // t is the distance
             raycastHit.point =  ray.at(t); // use ray at(t)
-            raycastHit.normal = (raycastHit.point - position) / radius;
+            raycastHit.normal = (raycastHit.point - transform.position) / radius;
             raycastHit.material = material.get();
             
 
@@ -41,7 +41,7 @@ bool Sphere::Hit( const Ray& ray, float minDistance, float maxDistance, raycastH
         if (t > minDistance && t < maxDistance) {
             raycastHit.distance = t; // t is the distance
             raycastHit.point = ray.at(t); // use ray at(t)
-            raycastHit.normal = (raycastHit.point - position) / radius;
+            raycastHit.normal = (raycastHit.point - transform.position) / radius;
             raycastHit.material = material.get();
 
 

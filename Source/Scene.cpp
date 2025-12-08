@@ -67,7 +67,7 @@ color3_t Scene::Trace(const Ray& ray, float minDistance, float maxDistance, int 
 		// get raycast hit matereial, get material color and scattered ray 
 		if (raycastHit.material->Scatter(ray, raycastHit, attenuation, scattered)) {
 			// trace scattered ray, final color will be the product of all the material colors
-			return attenuation * Trace(scattered, minDistance, maxDistance, maxDepth--);
+			return attenuation * Trace(scattered, minDistance, maxDistance, --maxDepth);
 		}
 		else {
 			return raycastHit.material->GetEmissive();

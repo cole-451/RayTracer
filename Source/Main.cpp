@@ -27,10 +27,10 @@ int main() {
 	float aspectRatio = framebuffer.width / (float)framebuffer.height;
 	Camera camera(70.0f, aspectRatio);
 		//camera.SetView({ 0, 0, 5 }, { 0, 0, 0 });
-		camera.SetView({ 0, 2, 5 }, { 0, 0, 0 });
+		camera.SetView({ 0, 5, 30 }, { 0, 0, 0 });
 
 		Scene scene; // after camera creation/initialization
-		scene.SetSky({0,1,0}, {1,0,0});
+		scene.SetSky({1,1,1}, {0,0,1});
 
 		/*auto sphere = std::make_unique<Sphere>(glm::vec3{ 0, 0, 0 }, 1.0f, color3_t{ 0, 1, 0 });
 		auto sphere2 = std::make_unique<Sphere>(glm::vec3{ 1, 1, 2 }, 1.0f, color3_t{ 1, 0, 1 });
@@ -44,10 +44,10 @@ int main() {
 		auto metal = std::make_shared<Metal>(color3_t{ 1.0f, 1.0f, 1.0f }, 0.0f);
 		std::shared_ptr<Material> materials[] = { red, green, blue, light, metal };
 
-		for (int i = 0; i < 15; i++) {
-			glm::vec3 position = random::getReal(glm::vec3{ -4.0f }, glm::vec3{ 4.0f });
-
-			std::unique_ptr<Object> sphere = std::make_unique<Sphere>(Transform{ position }, random::getReal(0.2f, 1.0f), materials[random::getInt(4)]);
+		for (int i = 0; i < 20; i++) {
+			glm::vec3 position = random::getReal(glm::vec3{ -10.0f }, glm::vec3{ 30.0f });
+			float radius = random::getReal(0.2f, 1.0f);
+			std::unique_ptr<Object> sphere = std::make_unique<Sphere>(Transform{ position }, radius, materials[random::getInt(4)]);
 			scene.AddObject(std::move(sphere));
 		}
 
@@ -78,7 +78,7 @@ int main() {
 		//for (int i = 0; i < 300; i++) framebuffer.DrawPoint(rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT, { 255, 255, 255, 255 });
 
 		// remove previous "static" code and replace with this
-		scene.Render(framebuffer, camera, 50);
+		scene.Render(framebuffer, camera, 100);
 		//scene.SetSky({ 1,1,0 }, { 1,0,0 });
 
 		// update frame buffer, copy buffer pixels to texture
