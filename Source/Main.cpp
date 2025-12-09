@@ -75,6 +75,7 @@ int main() {
 		auto material3 = std::make_shared<Metal>(color3_t(0.7f, 0.6f, 0.5f), 0.0f);
 		scene.AddObject(make_unique<Sphere>(Transform{ glm::vec3{ 4.0f, 1.0f, 0.0f } }, 1.0f, material3));
 
+		scene.Render(framebuffer, camera, 150);
 		//scene.SetSky({1,1,1}, {0,0,1});
 
 		///*auto sphere = std::make_unique<Sphere>(glm::vec3{ 0, 0, 0 }, 1.0f, color3_t{ 0, 1, 0 });
@@ -125,10 +126,9 @@ int main() {
 		}
 
 		// draw to frame buffer
-		framebuffer.Clear({ 0, 0, 0, 255 });
+		//framebuffer.Clear({ 0, 0, 0, 255 });
 		//for (int i = 0; i < 300; i++) framebuffer.DrawPoint(rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT, { 255, 255, 255, 255 });
 
-		scene.Render(framebuffer, camera, 150);
 
 		// update frame buffer, copy buffer pixels to texture
 		framebuffer.Update();
