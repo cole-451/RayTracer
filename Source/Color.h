@@ -25,7 +25,7 @@ inline color3_t HSVtoRGB(float hue, float saturation, float value) {
 inline SDL_Color ColorConvert(const color4_t& color4)
 {
 	SDL_Color color;
-	color.r = color4.r * 255;
+	
 	color.r = (uint8_t)(std::clamp(LinearToGamma(color4.r), 0.0f, 1.0f) * 255);
 	color.g = (uint8_t)(std::clamp(LinearToGamma(color4.g), 0.0f, 1.0f) * 255); // convert color4 to SDL_Color color
 	color.b = (uint8_t)(std::clamp(LinearToGamma(color4.b), 0.0f, 1.0f) * 255); // convert color4 to SDL_Color color

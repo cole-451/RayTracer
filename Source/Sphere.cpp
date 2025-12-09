@@ -9,7 +9,7 @@ bool Sphere::Hit( const Ray& ray, float minDistance, float maxDistance, raycastH
     // for example: 3x + 5 <= the coefficient of x is 3
     float a = glm::dot(ray.direction, ray.direction); // dot product of ray direction and ray direction
     float b = 2.0f * glm::dot(ray.direction, oc); // 2 * dot product of ray.direction and oc
-    float c = glm::dot(oc, oc - (radius * radius)); // dot product of oc and oc - radius squared
+    float c = glm::dot(oc, oc) - (radius * radius); // dot product of oc and oc - radius squared
 
     // discriminant tells us how many real intersection points exist :
     // discriminant => b² - 4ac
