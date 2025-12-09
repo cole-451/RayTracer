@@ -37,7 +37,7 @@ int main() {
 		scene.AddObject(std::move(sphere));
 		scene.AddObject(std::move(sphere2));*/
 
-		auto red = std::make_shared<Lambertian>(color3_t{ 1.0f, 0.0f, 0.0f });
+		auto red = std::make_shared<Lambertian>(HSVtoRGB(color3_t{ 1.0f, 1.0f, 1.0f }));
 		auto green = std::make_shared<Lambertian>(color3_t{ 0.0f, 1.0f, 0.0f });
 			auto blue = std::make_shared<Lambertian>(color3_t{ 0.0f, 0.0f, 1.0f });
 			auto light = std::make_shared<Emissive>(color3_t{ 1.0f, 1.0f, 1.0f }, 3.0f);
