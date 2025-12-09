@@ -25,7 +25,7 @@ void Scene::Render(Framebuffer& framebuffer, const Camera& camera, int numSample
 				// get ray from camera
 				Ray ray = camera.GetRay(point);
 				// trace ray, still needs a raycast hit
-				color += Trace(ray, 0, 100);
+				color += Trace(ray, 0.0001f, 100.0f, 20);
 			}
 			// get average color = (color / number samples)
 			color = color3_t{color / color3_t{(float)numSamples}};

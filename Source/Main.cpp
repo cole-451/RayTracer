@@ -42,12 +42,13 @@ int main() {
 			auto blue = std::make_shared<Lambertian>(color3_t{ 0.0f, 0.0f, 1.0f });
 			auto light = std::make_shared<Emissive>(color3_t{ 1.0f, 1.0f, 1.0f }, 3.0f);
 		auto metal = std::make_shared<Metal>(color3_t{ 1.0f, 1.0f, 1.0f }, 0.0f);
-		std::shared_ptr<Material> materials[] = { red, green, blue, light, metal };
+		auto glass = std::make_shared<Dielectric>(color3_t{ 1.0f, 1.0f, 1.0f }, 0.0f);
+		std::shared_ptr<Material> materials[] = { red, green, blue, light, metal, glass };
 
 		for (int i = 0; i < 20; i++) {
 			glm::vec3 position = random::getReal(glm::vec3{ -10.0f }, glm::vec3{ 30.0f });
 			float radius = random::getReal(0.2f, 1.0f);
-			std::unique_ptr<Object> sphere = std::make_unique<Sphere>(Transform{ position }, radius, materials[random::getInt(4)]);
+			std::unique_ptr<Object> sphere = std::make_unique<Sphere>(Transform{ position }, radius, materials[random::getInt(5)]);
 			scene.AddObject(std::move(sphere));
 		}
 
