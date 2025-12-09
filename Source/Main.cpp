@@ -45,12 +45,17 @@ int main() {
 		auto glass = std::make_shared<Dielectric>(color3_t{ 1.0f, 1.0f, 1.0f }, 0.0f);
 		std::shared_ptr<Material> materials[] = { red, green, blue, light, metal, glass };
 
-		for (int i = 0; i < 20; i++) {
+		for (int i = 0; i < 25; i++) {
 			glm::vec3 position = random::getReal(glm::vec3{ -10.0f }, glm::vec3{ 30.0f });
 			float radius = random::getReal(0.2f, 1.0f);
 			std::unique_ptr<Object> sphere = std::make_unique<Sphere>(Transform{ position }, radius, materials[random::getInt(5)]);
 			scene.AddObject(std::move(sphere));
 		}
+		std::unique_ptr<Object> glassSphere = std::make_unique<Sphere>(glm::vec3{20,0,20}, 1.0f, glass);
+		scene.AddObject(std::move(glassSphere));
+		std::unique_ptr<Object> metalSphere = std::make_unique<Sphere>(glm::vec3{-20,10,0}, 1.0f, metal);
+		scene.AddObject(std::move(metalSphere));
+
 
 		//add plane
 		auto gray = std::make_shared<Lambertian>(color3_t{ 0.2f, 0.2f, 0.2f });
