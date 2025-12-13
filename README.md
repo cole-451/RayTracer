@@ -1,6 +1,6 @@
 # RayTracer
 Created for my Computer Graphics class. This program is able to render simple spheres with their own textures using a ray-tracing pipeline.
-![screenshot 1](Build/Assets/shot1.png)
+![screenshot 1](Build/Assets/shot5.png)
 
 ## Features
 * Capable of rendering simple objects (spheres and planes) using Lambertian, metallic, and emissive materials.
